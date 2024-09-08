@@ -1,178 +1,109 @@
-//Sat Sep 07 2024 05:53:47 GMT+0000 (Coordinated Universal Time)
+//Sun Sep 08 2024 02:49:14 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
 (function () {})();
-const _0x1e8054 = document.getElementById("uploadArea"),
-  _0x118ac4 = document.getElementById("fileInput"),
-  _0xb7b797 = document.getElementById("preview"),
-  _0x62fd96 = document.getElementById("result"),
-  _0x523a19 = document.getElementById("uploadButton"),
-  _0x4597ab = document.getElementById("clearCacheButton"),
-  _0x4c8b25 = document.getElementById("defaultContent"),
-  _0x45659f = document.getElementById("alertDialog"),
-  _0x2c777c = document.getElementById("toast"),
-  _0x2a0eef = document.getElementById("progressBar"),
-  _0x148ae0 = _0x2a0eef.querySelector(".js_progress"),
-  _0x5947ec = document.getElementById("linkButtons"),
-  _0x557489 = document.getElementById("linkDisplay"),
-  _0x4c09db = document.getElementById("currentTime");
-let _0x11acf3 = null,
-  _0x264380 = "";
-const _0x226db9 = ["", "https://qqq.gtimg.cn", "https://os.i.gtimg.cn", "https://vac.gtimg.cn", "https://offline.gtimg.cn"];
-function _0x8ccb05(_0x2563cf) {
-  const _0x557509 = new FileReader();
-  _0x557509.onload = function (_0x39ce92) {
-    _0xb7b797.innerHTML = "<img src=\"" + _0x39ce92.target.result + "\" alt=\"预览图片\">";
-    _0x4c8b25.style.display = "none";
-    _0xb7b797.style.display = "block";
-  };
-  _0x557509.readAsDataURL(_0x2563cf);
-}
-function _0x5ac4f0() {
-  if (!_0x11acf3) {
-    _0x45e8ab();
+const _0x33f2b8 = document.getElementById("drop-area"),
+  _0x868b7e = document.getElementById("fileElem"),
+  _0x223500 = document.getElementById("thumb-container"),
+  _0x507682 = document.getElementById("result-container"),
+  _0xc37e6c = document.getElementById("single-upload-btn");
+const _0x4631a3 = document.getElementById("multi-upload-btn"),
+  _0x42e3c2 = document.getElementById("clear-btn");
+let _0x3249c3 = true;
+_0xc37e6c.addEventListener("click", () => {
+  _0x3249c3 = true;
+  _0xc37e6c.disabled = true;
+  _0x4631a3.disabled = false;
+  _0x223500.innerHTML = "";
+  _0x507682.innerHTML = "";
+});
+_0x4631a3.addEventListener("click", () => {
+  _0x3249c3 = false;
+  _0xc37e6c.disabled = false;
+  _0x4631a3.disabled = true;
+});
+_0x42e3c2.addEventListener("click", () => {
+  _0x223500.innerHTML = "";
+  _0x507682.innerHTML = "";
+  _0xc37e6c.disabled = false;
+  _0x4631a3.disabled = false;
+  _0x3249c3 = true;
+});
+_0x33f2b8.addEventListener("dragover", _0x2c6b21 => {
+  _0x2c6b21.preventDefault();
+  _0x33f2b8.classList.add("dragover");
+});
+_0x33f2b8.addEventListener("dragleave", () => {
+  _0x33f2b8.classList.remove("dragover");
+});
+_0x33f2b8.addEventListener("drop", _0x2a943c => {
+  _0x2a943c.preventDefault();
+  _0x33f2b8.classList.remove("dragover");
+  _0x52220c(_0x2a943c.dataTransfer.files);
+});
+_0x33f2b8.addEventListener("click", () => {
+  _0x868b7e.click();
+});
+_0x868b7e.addEventListener("change", () => {
+  _0x52220c(_0x868b7e.files);
+});
+function _0x52220c(_0x139920) {
+  if (_0x3249c3 && _0x139920.length > 1) {
+    alert("默认单图只能上传一张图片！");
     return;
   }
-  const _0x2749f2 = new FormData();
-  _0x2749f2.append("file", _0x11acf3);
-  _0x62fd96.textContent = "上传中...";
-  _0x2a0eef.style.display = "block";
-  _0x148ae0.style.width = "0%";
-  const _0x5b9d1e = new XMLHttpRequest();
-  _0x5b9d1e.open("POST", "upload.php", true);
-  _0x5b9d1e.upload.onprogress = function (_0x276e9f) {
-    if (_0x276e9f.lengthComputable) {
-      const _0x453c47 = _0x276e9f.loaded / _0x276e9f.total * 100;
-      _0x148ae0.style.width = _0x453c47 + "%";
+  for (let _0x59c187 = 0; _0x59c187 < _0x139920.length; _0x59c187++) {
+    const _0xdd5993 = _0x139920[_0x59c187];
+    if (_0xdd5993.size > 10 * 1024 * 1024) {
+      alert("最大10MB！");
+      continue;
     }
-  };
-  _0x5b9d1e.onload = function () {
-    if (_0x5b9d1e.status === 200) {
-      const _0x4d1807 = JSON.parse(_0x5b9d1e.responseText);
-      _0x4d1807.code === 200 ? (_0x264380 = _0x4d1807.url, _0x62fd96.innerHTML = "<p class=\"weui-cell__desc\" style=\"color: #1aad19;\">上传成功！</p>", _0x5947ec.style.display = "flex", _0x52f487(0)) : _0x62fd96.textContent = "上传失败: " + JSON.stringify(_0x4d1807);
-    } else _0x62fd96.textContent = "上传出错: " + _0x5b9d1e.statusText;
-    _0x2a0eef.style.display = "none";
-  };
-  _0x5b9d1e.onerror = function () {
-    _0x62fd96.textContent = "上传出错: 网络错误";
-    _0x2a0eef.style.display = "none";
-  };
-  _0x5b9d1e.send(_0x2749f2);
+    const _0x5448d3 = new FileReader();
+    _0x5448d3.onloadend = () => {
+      const _0x2bbcaa = document.createElement("img");
+      _0x2bbcaa.src = _0x5448d3.result;
+      _0x2bbcaa.classList.add("thumb");
+      _0x223500.appendChild(_0x2bbcaa);
+      _0x1bd86c(_0xdd5993);
+    };
+    _0x5448d3.readAsDataURL(_0xdd5993);
+  }
 }
-function _0x28381c() {
-  _0x11acf3 = null;
-  _0xb7b797.innerHTML = "";
-  _0x4c8b25.style.display = "block";
-  _0xb7b797.style.display = "none";
-  _0x62fd96.innerHTML = "";
-  _0x118ac4.value = "";
-  _0x2a0eef.style.display = "none";
-  _0x148ae0.style.width = "0%";
-  _0x5947ec.style.display = "none";
-  _0x557489.innerHTML = "";
-  _0x264380 = "";
-  _0x40abbc();
-}
-function _0x45e8ab() {
-  _0x45659f.style.display = "block";
-}
-function _0x495dd3() {
-  _0x45659f.style.display = "none";
-}
-function _0x40abbc(_0x538a03 = "已清除缓存") {
-  const _0x5b01a5 = document.querySelector(".weui-toast__content");
-  _0x5b01a5.textContent = _0x538a03;
-  _0x2c777c.style.display = "block";
-  setTimeout(() => {
-    _0x2c777c.style.display = "none";
-  }, 2000);
-}
-function _0x5272e4(_0x3c7f45) {
-  navigator.clipboard.writeText(_0x3c7f45).then(() => {
-    _0x40abbc("复制成功");
-  }, _0x2e5a67 => {
-    console.error("无法复制文本: ", _0x2e5a67);
-    _0x40abbc("复制失败");
+function _0x1bd86c(_0x42cf48) {
+  const _0x28e8ec = new FormData();
+  _0x28e8ec.append("file", _0x42cf48);
+  fetch("https://api.vviptuangou.com/api/upload", {
+    "method": "POST",
+    "headers": {
+      "token": "b3bc3a220db6317d4a08284c6119d136",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+    },
+    "body": _0x28e8ec
+  }).then(_0x558760 => _0x558760.json()).then(_0x4cb687 => {
+    let _0x583865 = _0x4cb687.img;
+    if (!_0x583865.startsWith("https://assets.vviptuangou.com/")) {
+      _0x583865 = _0x583865.replace("https://assets.vviptuangou.com", "https://assets.vviptuangou.com/");
+    }
+    _0x3fa600(_0x583865);
+  }).catch(_0x581bf3 => {
+    console.error("Error:", _0x581bf3);
   });
 }
-function _0xcd2350(_0x7ac7ad, _0x12d777) {
-  switch (_0x7ac7ad) {
-    case "url":
-      return _0x12d777;
-    case "html":
-      return "<img src=\"" + _0x12d777 + "\" alt=\"上传的图片\">";
-    case "ubb":
-      return "[img]" + _0x12d777 + "[/img]";
-    case "markdown":
-      return "![上传的图片](" + _0x12d777 + ")";
-    default:
-      return "";
-  }
+function _0x3fa600(_0x48581b) {
+  const _0x16d019 = document.createElement("div");
+  _0x16d019.classList.add("result-item");
+  const _0x534079 = document.createElement("input");
+  _0x534079.type = "text";
+  _0x534079.value = _0x48581b;
+  _0x534079.readOnly = true;
+  const _0x820823 = document.createElement("button");
+  _0x820823.classList.add("btn", "btn-secondary");
+  _0x820823.textContent = "Copy";
+  _0x820823.addEventListener("click", () => {
+    _0x534079.select();
+    document.execCommand("copy");
+  });
+  _0x16d019.appendChild(_0x534079);
+  _0x16d019.appendChild(_0x820823);
+  _0x507682.appendChild(_0x16d019);
 }
-function _0x52f487(_0x9fc479) {
-  const _0x2bdf0b = _0x226db9[_0x9fc479],
-    _0x458e5e = _0x2bdf0b ? _0x264380.replace(/^https?:\/\/[^/]+/, _0x2bdf0b) : _0x264380;
-  _0x557489.innerHTML = "\n            <div class=\"link-item\">\n                <div class=\"link-content\">" + _0x458e5e + "</div>\n                <div class=\"copy-buttons\">\n                    <a href=\"javascript:;\" class=\"weui-btn weui-btn_mini weui-btn_primary\" data-type=\"url\" data-link=\"" + _0x458e5e + "\">复制URL</a>\n                    <a href=\"javascript:;\" class=\"weui-btn weui-btn_mini weui-btn_primary\" data-type=\"html\" data-link=\"" + _0x458e5e + "\">复制HTML</a>\n                    <a href=\"javascript:;\" class=\"weui-btn weui-btn_mini weui-btn_primary\" data-type=\"ubb\" data-link=\"" + _0x458e5e + "\">复制UBB</a>\n                    <a href=\"javascript:;\" class=\"weui-btn weui-btn_mini weui-btn_primary\" data-type=\"markdown\" data-link=\"" + _0x458e5e + "\">复制Markdown</a>\n                </div>\n            </div>\n        ";
-}
-function _0x1d3ec1() {
-  const _0x1b9dfd = new Date(),
-    _0x465286 = {
-      "timeZone": "Asia/Shanghai",
-      "year": "numeric",
-      "month": "2-digit",
-      "day": "2-digit",
-      "hour": "2-digit",
-      "minute": "2-digit",
-      "second": "2-digit",
-      "hour12": false
-    };
-  _0x4c09db.textContent = _0x1b9dfd.toLocaleString("zh-CN", _0x465286);
-}
-setInterval(_0x1d3ec1, 1000);
-_0x1d3ec1();
-_0x1e8054.addEventListener("click", () => _0x118ac4.click());
-_0x118ac4.addEventListener("change", _0x421429 => {
-  if (_0x421429.target.files.length > 0) {
-    _0x11acf3 = _0x421429.target.files[0];
-    _0x8ccb05(_0x11acf3);
-  }
-});
-_0x1e8054.addEventListener("dragover", _0x11dcd2 => {
-  _0x11dcd2.preventDefault();
-  _0x1e8054.classList.add("dragover");
-});
-_0x1e8054.addEventListener("dragleave", () => {
-  _0x1e8054.classList.remove("dragover");
-});
-_0x1e8054.addEventListener("drop", _0x1c5a37 => {
-  _0x1c5a37.preventDefault();
-  _0x1e8054.classList.remove("dragover");
-  _0x1c5a37.dataTransfer.files.length > 0 && (_0x11acf3 = _0x1c5a37.dataTransfer.files[0], _0x8ccb05(_0x11acf3));
-});
-document.addEventListener("paste", _0x695ffb => {
-  const _0x58b4c5 = _0x695ffb.clipboardData.items;
-  for (let _0x5d2ddc = 0; _0x5d2ddc < _0x58b4c5.length; _0x5d2ddc++) {
-    if (_0x58b4c5[_0x5d2ddc].type.indexOf("image") !== -1) {
-      _0x11acf3 = _0x58b4c5[_0x5d2ddc].getAsFile();
-      _0x8ccb05(_0x11acf3);
-      break;
-    }
-  }
-});
-_0x523a19.addEventListener("click", _0x5ac4f0);
-_0x4597ab.addEventListener("click", _0x28381c);
-_0x5947ec.addEventListener("click", _0x115476 => {
-  if (_0x115476.target.classList.contains("weui-btn")) {
-    const _0x2656bf = parseInt(_0x115476.target.dataset.index);
-    _0x52f487(_0x2656bf);
-  }
-});
-_0x557489.addEventListener("click", _0x1e3a55 => {
-  if (_0x1e3a55.target.classList.contains("weui-btn")) {
-    const _0x1d71d9 = _0x1e3a55.target.dataset.type,
-      _0x1bbab3 = _0x1e3a55.target.dataset.link,
-      _0x506fc7 = _0xcd2350(_0x1d71d9, _0x1bbab3);
-    _0x5272e4(_0x506fc7);
-  }
-});
-_0x45659f.querySelector(".weui-dialog__btn").addEventListener("click", _0x495dd3);
